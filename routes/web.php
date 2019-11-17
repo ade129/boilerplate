@@ -43,5 +43,6 @@ Route::get('/blog', 'Frontend\BlogsController@index')->name('index');
 Route::get('/blog/all/{tag_name}', 'Frontend\BlogsController@show')->name('show');
 Route::get('/blog/detail/{slug}', 'Frontend\BlogsController@detail')->name('detail');
 
-//comment
+//comment frontend
 Route::post('/blog/detail/{slug}','Frontend\CommentController@save_comment')->name('save_comment');
+Route::get('/blog/detail/{slug}','Frontend\CommentController@show_comment')->name('show_comment');

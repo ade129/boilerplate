@@ -121,13 +121,13 @@
         @if(session('Error_Comment'))
         <div class="alert alert-danger alert-dismissible">
           <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-          <h4><i class="icon fa fa-ban"></i> Error Comment</h4>
+          <h4><i class="icon fa fa-ban"></i> Error!</h4>
           {{session('Error_Comment')}}
         </div> 
         @elseif(session('Success_Comment'))
         <div class="alert alert-success alert-dismissible">
             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
-            <h4><i class="icon fa fa-ban"></i> Succes Comment</h4>
+            <h4><i class="icon fa fa-ban"></i> Succes</h4>
             {{session('Success_Comment')}}
           </div>        
         @endif
@@ -136,51 +136,35 @@
         <div class="card my-4">
           <h5 class="card-header">Leave a Comment:</h5>
           <div class="card-body">
+
               {{ Form::open(array('url' => 'blog/detail/'.$detail->slug, 'class' => 'form-horizontal','files' => 'true')) }}
               <div class="form-group">
                 <textarea class="form-control" rows="3" name="subject"></textarea>
               </div>
               <button type="submit" class="btn btn-primary">Submit</button>
               {{ Form::close() }}
-          </div>
+
+            </div>
         </div>
 
         <!-- Single Comment -->
-        <div class="media mb-4">
-          <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-          <div class="media-body">
-            <h5 class="mt-0">Commenter Name</h5>
-            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-          </div>
-        </div>
+        @foreach ($quotes_comment as $comment)
+          @foreach ($comment->comments as $item)
+          <div class="media mb-4">
+            <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+            <div class="media-body">
+            <h5 class="mt-0">{{$item->users->name}}</h5> --}}
 
-        <!-- Comment with nested comments -->
-        <div class="media mb-4">
-          <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-          <div class="media-body">
-            <h5 class="mt-0">Commenter Name</h5>
-            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
+            {{$item->subject}}
 
-            <div class="media mt-4">
-              <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-              <div class="media-body">
-                <h5 class="mt-0">Commenter Name</h5>
-                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-              </div>
             </div>
+          </div>              
+          @endforeach
 
-            <div class="media mt-4">
-              <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
-              <div class="media-body">
-                <h5 class="mt-0">Commenter Name</h5>
-                Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-              </div>
-            </div>
+          @endforeach
 
-          </div>
-        </div>
+      <!-- Comment with nested comments -->
 
-      </div>
 
       <!-- Sidebar Widgets Column -->
       <div class="col-md-4">

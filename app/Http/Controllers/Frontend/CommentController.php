@@ -26,4 +26,29 @@ class CommentController extends Controller
 
         return redirect('blog/detail/'.$slug)->with('Success_Comment','Success Comment');
     }
+
+    public function show_comment($slug)
+    {
+        $detail = Quotes::with(['tags','images','users'])->where('slug',$slug)->first();
+        $quotes_comment = Quotes::with([
+                            'comments' => function ($user) {
+                                    $user->with('users');
+                                }
+                            ])->get();
+
+        // return $quotes_comment;
+        $contents = [
+            'detail' => $detail,
+            'quotes_comment' => $quotes_comment,
+        ];
+        
+
+        $pagecontent = view('frontend.blogs.detail', $contents);
+
+        $pagemain  = array (
+            'title' => 'Comments',
+            'pagecontent' => $pagecontent
+        );
+        return view('frontend.masterpage_frontend', $pagemain);
+    }
 }
