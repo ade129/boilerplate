@@ -18,6 +18,11 @@ Route::get('/', 'Frontend\HomeController@index');
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
+//login jwt
+Route::get('admin','AuthenticationController@login');
+Route::post('admin','AuthenticationController@dologin');
+Route::get('admin/logout','AuthenticationController@dologout');
+
 // users
 Route::get('/users', 'UsersController@index')->name('profile');
 Route::get('/users/create-new', 'UsersController@create_page')->name('create');

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Session;
 
 class User extends Authenticatable
 {
@@ -16,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
 
-    protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at'];  
 
     protected $table = 'users';
     protected $primaryKey = 'idusers';

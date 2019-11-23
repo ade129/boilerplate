@@ -65,7 +65,7 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <img src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.8/img/avatar5.png" class="user-image" alt="User Image">
-            <span class="hidden-xs">{{Auth::user()->name}}</span>
+            {{-- <span class="hidden-xs">{{Auth::user()->name}}</span> --}}
             </a>
             <ul class="dropdown-menu">
               <!-- Menu Footer-->
@@ -74,13 +74,8 @@
                   <a href="#" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="{{ route('logout') }}"
-                          onclick="event.preventDefault();
-                          document.getElementById('logout-form').submit();" class="btn btn-default btn-flat">Sign out
+                  <a href="{{ url('admin/logout') }}" class="btn btn-default btn-flat">Sign out
                   </a>
-                  <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                           @csrf
-                  </form>
                 </div>
               </li>
             </ul>
@@ -104,7 +99,7 @@
               <img src="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.8/img/avatar5.png" class="img-circle" alt="User Image">
             </div>
             <div class="pull-left info">
-              <p>{{Auth::user()->name}}</p> <!-- ini untuk sidebar admin -->
+              {{-- <p>{{Auth::user()->name}}</p> <!-- ini untuk sidebar admin --> --}}
               <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
             </div>
           </div>
@@ -115,7 +110,7 @@
               <li id="menu_home"><a href="{{url('home')}}"><i class="fa fa-dashboard"></i> <span>Home</span></a></li>
 
               {{-- untuk master --}}
-              @if (Auth::user()->role_type == "GA")
+              {{-- @if (Auth::user()->role_type == "GA") --}}
                   <li class="treeview" id="menu_master">
                     <a href="#">
                       <i class="fas fa-blog"></i> <span>Blog</span>
@@ -129,7 +124,7 @@
                       <li id="submenu_quotes"><a href="{{url('quotes')}}"><i class="fa fa-quote-left"></i> Quotes</a></li>
                     </ul>
                   </li>
-                @endif
+                {{-- @endif --}}
                 </ul>
     </section>
     

@@ -16,7 +16,9 @@ use Illuminate\Console\Command;
 use Symfony\Component\Console\Input\InputOption;
 
 class JWTGenerateCommand extends Command
-{
+{   
+    public function handle() { $this->fire(); }
+
     /**
      * The console command name.
      *
