@@ -23,7 +23,7 @@
                 <button type="button" class="btn btn-info btn-xs pull-right" data-toggle="modal" data-target="#myModal">Delete</button>
               </div>
               <div class="box-body">
-                {{Form::open(array('url' => 'quotes/update/'.$quote->idquotes, 'class' => 'form-horizontal'))}}
+                {{Form::open(array('url' => 'quotes/update/'.$quote->idquotes, 'class' => 'form-horizontal','files' => 'true'))}}
                 <div class="form-group">
                   <label class="col-sm-2 control-label"> Tittle</label>
                   <div class="col-sm-5">

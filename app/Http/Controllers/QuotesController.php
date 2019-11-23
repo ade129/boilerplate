@@ -9,6 +9,7 @@ use App\Models\Images;
 use Illuminate\Support\Str;
 use Auth;
 use Image;
+use File;
 
 class QuotesController extends Controller
 {
@@ -154,9 +155,24 @@ class QuotesController extends Controller
         $quotesSave->subject = $request->subject;
         $quotesSave->active = $active;
         $quotesSave->save();
-
+        
+        // update save image 
         // $save_image = Images
-
+        $save_image = Images::where('idquotes',$quote->idquotes)->first();
+        $image_old = public_path('images/'.$save_image->name);
+        // return $image_old;
+        // $save_image->idquotes = $quotesSave->idquotes;
+        if ($request->hasFile('images')) {
+            if(File::exists($image_old)){
+                $image = $request->file('images');
+                $re_image = Str::random(20).'.'.$image->getClientOriginalExtension();
+                Image::make($image)->resize(300, 300)->save( public_path('/images/' . $re_image) );
+                $save_image->name = $re_image;
+            }
+            File::delete($image_old);            
+        }
+ 
+        $save_image->save(); 
         $quotesSave->tags()->sync($request->tag);
 
         return redirect('quotes')->with('updated_success','Updated Quotes');
