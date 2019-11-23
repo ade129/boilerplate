@@ -1,3 +1,3 @@
-<pre>
-    @php print_r(Session::all()) @endphp
-</pre>
+    <pre>
+        @php print_r(Session::all()) @endphp
+    </pre>    
