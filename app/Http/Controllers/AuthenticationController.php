@@ -9,6 +9,10 @@ use App\Models\User;
 
 class AuthenticationController extends Controller
 {
+  public function __construct()
+  {
+    $this->middleware('jwt.check')->only('dologout');    
+  }
     public function login()
     {
         return view('admin');

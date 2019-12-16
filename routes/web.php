@@ -26,6 +26,8 @@ Route::get('admin/logout','AuthenticationController@dologout');
 // users
 Route::get('/users', 'UsersController@index')->name('profile');
 Route::get('/users/create-new', 'UsersController@create_page')->name('create');
+Route::get('/users/update/{user}', 'UsersController@update_page')->name('edit');
+Route::post('/users/update/{user}', 'UsersController@update_save')->name('update');
 
 // tags
 Route::get('/tags', 'TagsController@index')->name('index');
